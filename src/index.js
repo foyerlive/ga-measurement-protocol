@@ -1,4 +1,4 @@
-import Request from 'request';
+import Request from 'superagent';
 import _ from 'lodash';
 import invariant from 'invariant';
 import Uuid from 'uuid';
@@ -14,12 +14,7 @@ class GoogleAnalyticsMeasurementProtocol
     this._trackingId = options.trackingId;
     this._options = _.defaults(options || {}, {
       protocol: "https",
-      host: 'www.google-analytics.com',
-      maxSockets: 10
-    });
-    this._request = Request.defaults({
-      forever: true,
-      pool: {maxSockets: this._options.maxSockets}
+      host: 'www.google-analytics.com'
     });
     this._uuid = Uuid.v4();
   }
@@ -38,6 +33,7 @@ class GoogleAnalyticsMeasurementProtocol
 
   async send()
   {
+    return new Request();
     // Do Request
     return true;
   }
