@@ -1,4 +1,7 @@
-import Request from 'superagent';
+import superagentPromisePlugin from 'superagent-promise-plugin';
+import SuperAgent from 'superagent';
+let Request = superagentPromisePlugin.patch(SuperAgent);
+
 import _ from 'lodash';
 import invariant from 'invariant';
 import Uuid from 'uuid';
